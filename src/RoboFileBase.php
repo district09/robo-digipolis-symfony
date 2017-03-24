@@ -19,7 +19,18 @@ class RoboFileBase extends AbstractRoboFile
     /**
      * Path to the symfony console executable.
      */
-    protected $console = 'bin/console';
+    protected $console;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->console = file_exists('bin/console')
+          ? 'bin/console'
+          : 'app/console';
+    }
 
     protected function isSiteInstalled($worker, AbstractAuth $auth, $remote)
     {
