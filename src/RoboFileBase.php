@@ -209,7 +209,7 @@ class RoboFileBase extends AbstractRoboFile
         $collection = $this->collectionBuilder();
         $collection
             ->taskExecStack()
-                ->exec($this->console . ' doctrine:migrations:execute --no-interaction');
+                ->exec($this->console . ' doctrine:migrations:migrate --no-interaction');
         return $collection;
     }
 
@@ -222,7 +222,7 @@ class RoboFileBase extends AbstractRoboFile
         $collection = $this->collectionBuilder();
         $collection
             ->taskExecStack()
-                ->exec($this->console . ' doctrine:migrations:execute --no-interaction');
+                ->exec($this->console . ' doctrine:migrations:migrate --no-interaction');
         return $collection;
     }
 
