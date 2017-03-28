@@ -10,13 +10,6 @@ use Symfony\Component\Yaml\Yaml;
 class RoboFileBase extends AbstractRoboFile
 {
     /**
-     * File backup subdirs.
-     *
-     * @var type
-     */
-    protected $fileBackupSubDirs = ['app', 'framework', 'logs'];
-
-    /**
      * Path to the symfony console executable.
      */
     protected $console;
