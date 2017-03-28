@@ -8,8 +8,8 @@ remote:
   backupsdir: '${remote.appdir}/backups'
   symlinks:
     - '${remote.webdir}:${remote.currentdir}'
-    - '${remote.configdir}/parameters.yml:${remote.currentdir}/app/config/parameters.yml'
-    - '${remote.filesdir}/uploads:${remote.currentdir}/web/uploads'
+    - '${remote.configdir}/parameters.yml:${remote.releasesdir}/[time]/app/config/parameters.yml'
+    - '${remote.filesdir}/public/uploads:${remote.currentdir}/uploads'
   opcache:
     env: 'fcgi'
     host: '/var/run/php_fpm_[user].sock'
