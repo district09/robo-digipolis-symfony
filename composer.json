@@ -6,7 +6,6 @@
     "prefer-stable": true,
     "require": {
         "digipolisgent/robo-digipolis-helpers": "^0.1",
-        "vlucas/phpdotenv": "^2.4",
         "symfony/yaml": "^3.2|^2.8"
     },
     "require-dev": {
