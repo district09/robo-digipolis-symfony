@@ -1,5 +1,15 @@
 # Robo Digipolis Symfony
 
+[![Latest Stable Version](https://poser.pugx.org/digipolisgent/robo-digipolis-symfony/v/stable)](https://packagist.org/packages/digipolisgent/robo-digipolis-symfony)
+[![Latest Unstable Version](https://poser.pugx.org/digipolisgent/robo-digipolis-symfony/v/unstable)](https://packagist.org/packages/digipolisgent/robo-digipolis-symfony)
+[![Total Downloads](https://poser.pugx.org/digipolisgent/robo-digipolis-symfony/downloads)](https://packagist.org/packages/digipolisgent/robo-digipolis-symfony)
+[![License](https://poser.pugx.org/digipolisgent/robo-digipolis-symfony/license)](https://packagist.org/packages/digipolisgent/robo-digipolis-symfony)
+
+[![Build Status](https://travis-ci.org/digipolisgent/robo-digipolis-symfony.svg?branch=develop)](https://travis-ci.org/digipolisgent/robo-digipolis-symfony)
+[![Maintainability](https://api.codeclimate.com/v1/badges/dce687535f6482464538/maintainability)](https://codeclimate.com/github/digipolisgent/robo-digipolis-symfony/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/dce687535f6482464538/test_coverage)](https://codeclimate.com/github/digipolisgent/robo-digipolis-symfony/test_coverage)
+[![PHP 7 ready](https://php7ready.timesplinter.ch/digipolisgent/robo-digipolis-symfony/develop/badge.svg)](https://travis-ci.org/digipolisgent/robo-digipolis-symfony)
+
 Used by digipolis, serving as an example.
 
 This package contains a RoboFileBase class that can be used in your own
