@@ -28,7 +28,7 @@ class RoboFileBase extends AbstractRoboFile
 
     protected function isSiteInstalled($worker, AbstractAuth $auth, $remote)
     {
-        $currentProjectRoot = $remote['currentdir'] . '/..';
+        $currentProjectRoot = $this->getCurrentProjectRoot($worker, $auth, $remote);
         $migrateStatus = '';
         $status = $this->taskSsh($worker, $auth)
             ->remoteDirectory($currentProjectRoot, true)
@@ -98,7 +98,7 @@ class RoboFileBase extends AbstractRoboFile
             $opts['files'] = true;
             $opts['data'] = true;
         }
-        $currentProjectRoot = $remote['currentdir'] . '/..';
+        $currentProjectRoot = $remote['rootdir'];
         $collection = $this->collectionBuilder();
         $parent = parent::preRestoreBackupTask($worker, $auth, $remote);
         if ($parent) {
@@ -117,7 +117,7 @@ class RoboFileBase extends AbstractRoboFile
 
     protected function installTask($worker, AbstractAuth $auth, $remote, $extra = [], $force = false)
     {
-        $currentProjectRoot = $remote['currentdir'] . '/..';
+        $currentProjectRoot = $remote['rootdir'];;
         $collection = $this->collectionBuilder();
         $collection->taskSsh($worker, $auth)
             ->remoteDirectory($currentProjectRoot, true)
@@ -132,7 +132,7 @@ class RoboFileBase extends AbstractRoboFile
 
     protected function updateTask($server, AbstractAuth $auth, $remote, $extra = [])
     {
-        $currentProjectRoot = $remote['currentdir'] . '/..';
+        $currentProjectRoot = $remote['rootdir'];
         return $this->taskSsh($server, $auth)
             ->remoteDirectory($currentProjectRoot, true)
             // Updates can take a long time. Let's set it to 15 minutes.
@@ -142,7 +142,7 @@ class RoboFileBase extends AbstractRoboFile
 
     protected function clearCacheTask($worker, $auth, $remote)
     {
-        $currentProjectRoot = $remote['currentdir'] . '/..';
+        $currentProjectRoot = $remote['rootdir'];
         return $this->taskSsh($worker, $auth)
                 ->remoteDirectory($currentProjectRoot, true)
                 ->timeout(120)
