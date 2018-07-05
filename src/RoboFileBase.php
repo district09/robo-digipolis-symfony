@@ -154,6 +154,7 @@ class RoboFileBase extends AbstractRoboFile
         $collection = $this->collectionBuilder();
         $collection
             ->taskThemeCompile()
+            ->taskExec('/bin/yarn run encore production')
             ->taskThemeClean()
             ->taskPackageProject($archive)
                 ->ignoreFileNames([
