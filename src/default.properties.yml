@@ -10,7 +10,6 @@ remote:
   symlinks:
     - '${remote.webdir}:${remote.currentdir}'
     - '${remote.configdir}/.env:${remote.releasesdir}/[time]/.env'
-    - '${remote.filesdir}/public/uploads:${remote.webdir}/uploads'
   opcache:
     env: 'fcgi'
     host: '/var/run/php_fpm_[user].sock'
