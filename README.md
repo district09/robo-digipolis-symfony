@@ -17,6 +17,9 @@ RoboFile. All commands can be overwritten by overwriting the parent method.
 This class also contains properties (`$fileBackupSubDirs` and `$console`) that
 can be overwritten by your RoboFile.
 
+## Versions
+Use version 1.x for Symfony 2 or 3, use 2.x for Symfony 4.
+
 ## Properties
 
 ### `$filesBackupDirs`

@@ -1,12 +1,12 @@
 {
     "name": "digipolisgent/robo-digipolis-symfony",
-    "description": "Basic deploy flow for a Symfony site.",
+    "description": "Basic deploy flow for a Symfony 4 site.",
     "type": "robo-tasks",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
         "digipolisgent/robo-digipolis-helpers": "^0.1.17",
-        "symfony/yaml": "^3.2|^2.8"
+        "symfony/yaml": "~4"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.4"

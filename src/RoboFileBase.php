@@ -21,9 +21,7 @@ class RoboFileBase extends AbstractRoboFile
     public function __construct()
     {
         parent::__construct();
-        $this->console = file_exists('bin/console')
-          ? 'bin/console'
-          : 'app/console';
+        $this->console = 'bin/console';
     }
 
     protected function isSiteInstalled($worker, AbstractAuth $auth, $remote)
@@ -156,6 +154,7 @@ class RoboFileBase extends AbstractRoboFile
         $collection = $this->collectionBuilder();
         $collection
             ->taskThemeCompile()
+            ->taskExec('/bin/yarn run encore production')
             ->taskThemeClean()
             ->taskPackageProject($archive)
                 ->ignoreFileNames([
@@ -475,21 +474,60 @@ class RoboFileBase extends AbstractRoboFile
         }
 
         $finder = new Finder();
-        $finder->in($rootDir)->ignoreDotFiles(false)->files()->name('parameters.yml');
+        $finder->in($rootDir)->ignoreDotFiles(false)->files()->name('.env');
         foreach ($finder as $settingsFile) {
-            $settings = Yaml::parse(file_get_contents($settingsFile));
+            $env = new Dotenv(dirname($settingsFile->getRealPath()), $settingsFile->getFilename());
+            $env->load();
             break;
         }
+
+        $url = $this->env('DATABASE_URL', 'mysql://symfony:symfony@localhost:3306/symfony');
+        $matches = [];
+        preg_match('/^([^:]*):([^=]*)=([^;]*);([^=]*)=([^;]*);([^=]*)=([^;]*);$/', $url, $matches);
         return [
           'default' => [
-                'type' => str_replace('pdo_', '', $settings['parameters']['database_driver']),
-                'host' => $settings['parameters']['database_host'],
-                'port' => $settings['parameters']['database_port'],
-                'user' => $settings['parameters']['database_user'],
-                'pass' => $settings['parameters']['database_password'],
-                'database' => $settings['parameters']['database_name'],
+                'type' => $matches[1],
+                'user' => $matches[2],
+                'pass' => $matches[3],
+                'host' => $matches[4],
+                'port' => $matches[5],
+                'database' => $matches[6],
                 'structureTables' => [],
             ]
         ];
     }
+
+    /**
+     * Gets the value of an environment variable.
+     *
+     * @param  string  $key
+     * @param  mixed   $default
+     * @return mixed
+     */
+    protected function env($key, $default = null)
+    {
+        $value = getenv($key);
+        if ($value === false) {
+            return is_callable($default) ? call_user_func($default) : $default;
+        }
+        switch (strtolower($value)) {
+            case 'true':
+            case '(true)':
+                return true;
+            case 'false':
+            case '(false)':
+                return false;
+            case 'empty':
+            case '(empty)':
+                return '';
+            case 'null':
+            case '(null)':
+                return;
+        }
+        if (strlen($value) > 1 && substr($value, 0, 1) === '"' && substr($value, -1) === '"') {
+            return substr($value, 1, -1);
+        }
+        return $value;
+    }
+
 }
