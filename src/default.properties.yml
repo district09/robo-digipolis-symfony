@@ -2,14 +2,14 @@ remote:
   appdir: '/home/[user]/apps/[app]'
   releasesdir: '${remote.appdir}/releases'
   rootdir: '${remote.releasesdir}/[time]'
-  webdir: '${remote.rootdir}/web'
+  webdir: '${remote.rootdir}/public'
   currentdir: '${remote.appdir}/current'
   configdir: '${remote.appdir}/config'
   filesdir: '${remote.appdir}/files'
   backupsdir: '${remote.appdir}/backups'
   symlinks:
     - '${remote.webdir}:${remote.currentdir}'
-    - '${remote.configdir}/parameters.yml:${remote.releasesdir}/[time]/app/config/parameters.yml'
+    - '${remote.configdir}/.env:${remote.releasesdir}/[time]/.env'
     - '${remote.filesdir}/public/uploads:${remote.webdir}/uploads'
   opcache:
     env: 'fcgi'
