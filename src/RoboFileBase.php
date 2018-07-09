@@ -15,8 +15,6 @@ class RoboFileBase extends AbstractRoboFile
      */
     protected $console;
 
-    protected $fileBackupSubDirs = ['private', 'public'];
-
     /**
      * {@inheritdoc}
      */
