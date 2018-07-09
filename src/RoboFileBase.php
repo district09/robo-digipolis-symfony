@@ -100,7 +100,7 @@ class RoboFileBase extends AbstractRoboFile
         }
         $currentProjectRoot = $this->getCurrentProjectRoot($worker, $auth, $remote);
         $collection = $this->collectionBuilder();
-        $parent = parent::preRestoreBackupTask($worker, $auth, $remote);
+        $parent = parent::preRestoreBackupTask($worker, $auth, $remote, $opts);
         if ($parent) {
             $collection->addTask($parent);
         }
