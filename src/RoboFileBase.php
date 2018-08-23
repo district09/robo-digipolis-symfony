@@ -256,6 +256,7 @@ class RoboFileBase extends AbstractRoboFile
         $collection = $this->collectionBuilder();
         $collection
             ->taskExecStack()
+                ->exec($this->console . ' cache:clear')
                 ->exec($this->console . ' doctrine:migrations:migrate --no-interaction');
         return $collection;
     }
