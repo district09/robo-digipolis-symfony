@@ -10,6 +10,7 @@ use Symfony\Component\Finder\Finder;
 
 class RoboFileBase extends AbstractRoboFile
 {
+    use \DigipolisGent\Robo\Task\Package\Utility\NpmFindExecutable;
     /**
      * Path to the symfony console executable.
      */
@@ -154,7 +155,7 @@ class RoboFileBase extends AbstractRoboFile
         $collection = $this->collectionBuilder();
         $collection
             ->taskThemeCompile()
-            ->taskExec('/bin/yarn run encore production')
+            ->taskExec($this->findExecutable('yarn') . ' run encore production')
             ->taskThemeClean()
             ->taskPackageProject($archive)
                 ->ignoreFileNames([
