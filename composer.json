@@ -5,8 +5,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "digipolisgent/robo-digipolis-helpers": "^1.0@alpha",
-        "symfony/yaml": "~4",
+        "digipolisgent/robo-digipolis-helpers": "^1.0",
+        "symfony/yaml": "~4|~3",
         "vlucas/phpdotenv": "^2.5",
         "digipolisgent/robo-digipolis-code-validation": "^0.1.1"
     },
