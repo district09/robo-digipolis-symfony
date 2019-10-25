@@ -203,7 +203,8 @@ class RoboFileBase extends AbstractRoboFile
     /**
      * Method alias.
      */
-    public function deployTask($arguments, $opts) {
+    protected function deployTask($arguments, $opts)
+    {
         return $this->deploy($arguments, $opts);
     }
 
@@ -334,7 +335,7 @@ class RoboFileBase extends AbstractRoboFile
     /**
      * Method alias.
      */
-    public function syncTask(
+    protected function syncTask(
         $sourceUser,
         $sourceHost,
         $sourceKeyFile,
