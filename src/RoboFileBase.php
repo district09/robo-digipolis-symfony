@@ -201,6 +201,13 @@ class RoboFileBase extends AbstractRoboFile
     }
 
     /**
+     * Method alias.
+     */
+    public function deployTask($arguments, $opts) {
+        return $this->deploy($arguments, $opts);
+    }
+
+    /**
      * Build a Symfony site and package it.
      *
      * @param string $archivename
@@ -312,6 +319,33 @@ class RoboFileBase extends AbstractRoboFile
             $opts['data'] = true;
         }
         return $this->syncTask(
+            $sourceUser,
+            $sourceHost,
+            $sourceKeyFile,
+            $destinationUser,
+            $destinationHost,
+            $destinationKeyFile,
+            $sourceApp,
+            $destinationApp,
+            $opts
+        );
+    }
+
+    /**
+     * Method alias.
+     */
+    public function syncTask(
+        $sourceUser,
+        $sourceHost,
+        $sourceKeyFile,
+        $destinationUser,
+        $destinationHost,
+        $destinationKeyFile,
+        $sourceApp,
+        $destinationApp,
+        $opts
+    ) {
+        return $this->sync(
             $sourceUser,
             $sourceHost,
             $sourceKeyFile,
