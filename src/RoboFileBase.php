@@ -10,6 +10,13 @@ use Symfony\Component\Yaml\Yaml;
 
 class RoboFileBase extends AbstractRoboFile
 {
+    use \DigipolisGent\Robo\Task\Package\Utility\NpmFindExecutable;
+    use \DigipolisGent\Robo\Task\CodeValidation\loadTasks;
+    use \DigipolisGent\Robo\Helpers\Traits\AbstractCommandTrait;
+    use \DigipolisGent\Robo\Task\Deploy\Commands\loadCommands;
+    use \DigipolisGent\Robo\Task\Package\Traits\ThemeCompileTrait;
+    use \DigipolisGent\Robo\Task\Package\Traits\ThemeCleanTrait;
+
     /**
      * Path to the symfony console executable.
      */
