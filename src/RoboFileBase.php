@@ -10,6 +10,13 @@ use Symfony\Component\Yaml\Yaml;
 
 class RoboFileBase extends AbstractRoboFile
 {
+    use \DigipolisGent\Robo\Task\Package\Utility\NpmFindExecutable;
+    use \DigipolisGent\Robo\Task\CodeValidation\loadTasks;
+    use \DigipolisGent\Robo\Helpers\Traits\AbstractCommandTrait;
+    use \DigipolisGent\Robo\Task\Deploy\Commands\loadCommands;
+    use \DigipolisGent\Robo\Task\Package\Traits\ThemeCompileTrait;
+    use \DigipolisGent\Robo\Task\Package\Traits\ThemeCleanTrait;
+
     /**
      * Path to the symfony console executable.
      */
@@ -201,6 +208,14 @@ class RoboFileBase extends AbstractRoboFile
     }
 
     /**
+     * Method alias.
+     */
+    protected function deployTask($arguments, $opts)
+    {
+        return $this->deploy($arguments, $opts);
+    }
+
+    /**
      * Build a Symfony site and package it.
      *
      * @param string $archivename
@@ -312,6 +327,33 @@ class RoboFileBase extends AbstractRoboFile
             $opts['data'] = true;
         }
         return $this->syncTask(
+            $sourceUser,
+            $sourceHost,
+            $sourceKeyFile,
+            $destinationUser,
+            $destinationHost,
+            $destinationKeyFile,
+            $sourceApp,
+            $destinationApp,
+            $opts
+        );
+    }
+
+    /**
+     * Method alias.
+     */
+    protected function syncTask(
+        $sourceUser,
+        $sourceHost,
+        $sourceKeyFile,
+        $destinationUser,
+        $destinationHost,
+        $destinationKeyFile,
+        $sourceApp,
+        $destinationApp,
+        $opts
+    ) {
+        return $this->sync(
             $sourceUser,
             $sourceHost,
             $sourceKeyFile,
