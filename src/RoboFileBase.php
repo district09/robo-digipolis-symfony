@@ -150,23 +150,25 @@ class RoboFileBase extends AbstractRoboFile
     {
         $archive = is_null($archivename) ? $this->time . '.tar.gz' : $archivename;
         $collection = $this->collectionBuilder();
-        $collection
-            ->taskThemeCompile()
-            ->taskExec($this->findExecutable('yarn') . ' run encore production')
-            ->taskThemeClean()
-            ->taskPackageProject($archive)
-                ->ignoreFileNames([
-                    '.gitattributes',
-                    '.gitignore',
-                    '.gitkeep',
-                    'README',
-                    'README.txt',
-                    'README.md',
-                    'LICENSE',
-                    'LICENSE.txt',
-                    'LICENSE.md',
-                    'phpunit.xml.dist'
-                ]);
+        if (file_exists('package.json')) {
+            $collection
+                ->taskThemeCompile()
+                ->taskExec($this->findExecutable('yarn') . ' run encore production')
+                ->taskThemeClean();
+        }
+        $collection->taskPackageProject($archive)
+            ->ignoreFileNames([
+                '.gitattributes',
+                '.gitignore',
+                '.gitkeep',
+                'README',
+                'README.txt',
+                'README.md',
+                'LICENSE',
+                'LICENSE.txt',
+                'LICENSE.md',
+                'phpunit.xml.dist'
+            ]);
         return $collection;
     }
 
