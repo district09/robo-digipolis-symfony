@@ -202,6 +202,7 @@ class RoboFileBase extends AbstractRoboFile
                 'port' => $matches[5],
                 'database' => $matches[6],
                 'structureTables' => [],
+                'extra' => '--skip-add-locks --no-tablespaces',
             ]
         ];
     }
