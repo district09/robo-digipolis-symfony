@@ -10,7 +10,6 @@ use Symfony\Component\Finder\Finder;
 class RoboFileBase extends AbstractRoboFile
 {
     use \DigipolisGent\Robo\Task\Package\Utility\NpmFindExecutable;
-    use \DigipolisGent\Robo\Task\CodeValidation\loadTasks;
     use \DigipolisGent\Robo\Helpers\Traits\AbstractCommandTrait;
     use \DigipolisGent\Robo\Task\Deploy\Commands\loadCommands;
     use \DigipolisGent\Robo\Task\Package\Traits\ThemeCompileTrait;
@@ -50,54 +49,6 @@ class RoboFileBase extends AbstractRoboFile
             ->run()
             ->wasSuccessful();
         return $status && $migrateStatus != 'No migrations found.';
-    }
-
-    public function digipolisValidateCode()
-    {
-        $local = $this->getLocalSettings();
-        $directories = [
-            $local['project_root'] . '/src',
-        ];
-
-        // Check if directories exist.
-        $checks = [];
-        foreach ($directories as $dir) {
-            if (!file_exists($dir)) {
-                continue;
-            }
-
-            $checks[] = $dir;
-        }
-        if (!$checks) {
-            $this->say('! No custom directories to run checks on.');
-            return;
-        }
-        $phpcs = $this
-            ->taskPhpCs(
-                implode(' ', $checks),
-                'PSR1,PSR2',
-                $phpcsExtensions
-            )
-            ->ignore([
-                'node_modules',
-                'Gruntfile.js',
-                '*.md',
-                '*.min.js',
-                '*.css'
-            ])
-            ->reportType('full');
-        $phpmd = $this->taskPhpMd(
-            implode(',', $checks),
-            'text',
-            $phpmdExtensions
-        );
-        $collection = $this->collectionBuilder();
-        // Add the PHPCS task to the rollback as well so we always have the full
-        // report.
-        $collection->rollback($phpcs);
-        $collection->addTask($phpmd);
-        $collection->addTask($phpcs);
-        return $collection;
     }
 
     /**
