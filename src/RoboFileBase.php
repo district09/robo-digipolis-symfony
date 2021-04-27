@@ -110,7 +110,7 @@ class RoboFileBase extends AbstractRoboFile
         }
         $collection->taskExec((string) CommandBuilder::create('rm')
             ->addFlag('rf')
-            ->addArgument('var/cache/*')
+            ->addRawArgument('var/cache/*')
         );
         $collection->taskPackageProject($archive)
             ->ignoreFileNames([
