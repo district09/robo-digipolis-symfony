@@ -2,6 +2,7 @@
 
 namespace DigipolisGent\Robo\Symfony;
 
+use DigipolisGent\CommandBuilder\CommandBuilder;
 use DigipolisGent\Robo\Helpers\AbstractRoboFile;
 use DigipolisGent\Robo\Task\Deploy\Ssh\Auth\AbstractAuth;
 use Dotenv\Dotenv;
@@ -107,6 +108,10 @@ class RoboFileBase extends AbstractRoboFile
                 ->taskExec($this->findExecutable('yarn') . ' run encore production')
                 ->taskThemeClean();
         }
+        $collection->taskExec((string) CommandBuilder::create('rm')
+            ->addFlag('rf')
+            ->addArgument('var/cache/*')
+        );
         $collection->taskPackageProject($archive)
             ->ignoreFileNames([
                 '.gitattributes',
