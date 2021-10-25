@@ -9,7 +9,7 @@ remote:
   backupsdir: '${remote.appdir}/backups'
   symlinks:
     - '${remote.webdir}:${remote.currentdir}'
-    - '${remote.configdir}/.env:${remote.releasesdir}/[time]/.env'
+    - '${remote.configdir}/.env.local:${remote.releasesdir}/[time]/.env.local'
   opcache:
     env: 'fcgi'
     host: '/usr/local/multi-php/[user]/run/[user].sock'

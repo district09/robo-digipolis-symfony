@@ -5,7 +5,7 @@ namespace DigipolisGent\Robo\Symfony;
 use DigipolisGent\CommandBuilder\CommandBuilder;
 use DigipolisGent\Robo\Helpers\AbstractRoboFile;
 use DigipolisGent\Robo\Task\Deploy\Ssh\Auth\AbstractAuth;
-use Dotenv\Dotenv;
+use Symcony\Component\Dotenv\Dotenv;
 use Symfony\Component\Finder\Finder;
 
 class RoboFileBase extends AbstractRoboFile
@@ -123,7 +123,8 @@ class RoboFileBase extends AbstractRoboFile
                 'LICENSE',
                 'LICENSE.txt',
                 'LICENSE.md',
-                'phpunit.xml.dist'
+                'phpunit.xml.dist',
+                '.env.local',
             ]);
         return $collection;
     }
@@ -141,8 +142,8 @@ class RoboFileBase extends AbstractRoboFile
         $finder = new Finder();
         $finder->in($rootDir)->ignoreDotFiles(false)->files()->name('.env');
         foreach ($finder as $settingsFile) {
-            $env = new Dotenv(dirname($settingsFile->getRealPath()), $settingsFile->getFilename());
-            $env->load();
+            $env = new Dotenv();
+            $env->load(dirname($settingsFile->getRealPath()), $settingsFile->getFilename());
             break;
         }
 
