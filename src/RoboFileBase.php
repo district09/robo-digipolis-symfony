@@ -143,7 +143,7 @@ class RoboFileBase extends AbstractRoboFile
         $finder->in($rootDir)->ignoreDotFiles(false)->files()->name('.env');
         foreach ($finder as $settingsFile) {
             $env = new Dotenv();
-            $env->load(dirname($settingsFile->getRealPath()), $settingsFile->getFilename());
+            $env->loadEnv(dirname($settingsFile->getRealPath()) . DIRECTORY_SEPARATOR . $settingsFile->getFilename());
             break;
         }
 
