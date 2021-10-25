@@ -12,7 +12,5 @@ before_script:
 install:
   - composer self-update
   - composer install --dev
-script:
-  - vendor/bin/phpunit
 after_script:
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
