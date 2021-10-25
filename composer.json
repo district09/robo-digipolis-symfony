@@ -28,8 +28,5 @@
             "name": "Peter Decuyper",
             "email": "peter.decuyper@digipolis.gent"
         }
-    ],
-    "require-dev": {
-        "phpunit/phpunit": "^9.5"
-    }
+    ]
 }
