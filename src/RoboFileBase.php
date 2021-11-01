@@ -173,7 +173,7 @@ class RoboFileBase extends AbstractRoboFile
      */
     protected function env($key, $default = null)
     {
-        $value = getenv($key);
+        $value = array_key_exists($key, $_ENV) ? $_ENV[$key] : false;
         if ($value === false) {
             return is_callable($default) ? call_user_func($default) : $default;
         }
