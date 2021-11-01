@@ -5,7 +5,7 @@ namespace DigipolisGent\Robo\Symfony;
 use DigipolisGent\CommandBuilder\CommandBuilder;
 use DigipolisGent\Robo\Helpers\AbstractRoboFile;
 use DigipolisGent\Robo\Task\Deploy\Ssh\Auth\AbstractAuth;
-use Symcony\Component\Dotenv\Dotenv;
+use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\Finder\Finder;
 
 class RoboFileBase extends AbstractRoboFile
