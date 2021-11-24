@@ -20,8 +20,8 @@ trait UpdateSymfonyTrait
         $currentProjectRoot = $remote['rootdir'];
         return $this->taskSsh($server, $auth)
             ->remoteDirectory($currentProjectRoot, true)
-            // Updates can take a long time. Let's set it to 15 minutes.
-            ->timeout(900)
+            // Updates can take a long time. Let's set it to 30 minutes.
+            ->timeout(1800)
             ->exec('vendor/bin/robo digipolis:update-symfony');
     }
 
