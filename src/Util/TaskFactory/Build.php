@@ -9,6 +9,7 @@ class Build extends BuildBase
 {
     use \DigipolisGent\Robo\Task\Package\Tasks;
     use \DigipolisGent\Robo\Task\Package\Utility\NpmFindExecutable;
+    use \Robo\Task\Base\Tasks;
 
     /**
      * Build a site and package it.
