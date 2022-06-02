@@ -2,13 +2,15 @@
 
 namespace DigipolisGent\Robo\Symfony\Util\TaskFactory;
 
+use DigipolisGent\Robo\Helpers\DependencyInjection\RemoteHelperAwareInterface;
 use DigipolisGent\Robo\Helpers\Util\TaskFactory\AbstractApp;
 use DigipolisGent\Robo\Task\Deploy\Ssh\Auth\AbstractAuth;
 
-class Symfony extends AbstractApp
+class Symfony extends AbstractApp implements RemoteHelperAwareInterface
 {
     use \DigipolisGent\Robo\Task\Deploy\Tasks;
     use \Robo\Task\Base\Tasks;
+    use \DigipolisGent\Robo\Helpers\DependencyInjection\Traits\RemoteHelperAware;
 
     protected $siteInstalled = null;
 
@@ -86,7 +88,7 @@ class Symfony extends AbstractApp
      */
     public function isSiteInstalled($worker, AbstractAuth $auth, $remote)
     {
-        $currentProjectRoot = $remote['rootdir'];
+        $currentProjectRoot = $this->remoteHelper->getCurrentProjectRoot($worker, $auth, $remote);
         $migrateStatus = '';
         $status = $this->taskSsh($worker, $auth)
             ->remoteDirectory($currentProjectRoot, true)
