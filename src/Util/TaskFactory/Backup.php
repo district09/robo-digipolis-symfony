@@ -7,6 +7,8 @@ use DigipolisGent\Robo\Task\Deploy\Ssh\Auth\AbstractAuth;
 
 class Backup extends BackupBase
 {
+    protected $console = 'bin/console';
+
     /**
      * Pre restore backup task.
      *
