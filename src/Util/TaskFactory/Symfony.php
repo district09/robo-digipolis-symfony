@@ -31,7 +31,7 @@ class Symfony extends AbstractApp
      */
     public function installTask($worker, AbstractAuth $auth, $remote, $extra = [], $force = false)
     {
-        $currentProjectRoot = $remote['rootdir'];;
+        $currentProjectRoot = $remote['rootdir'];
         $collection = $this->collectionBuilder();
         $collection->taskSsh($worker, $auth)
             ->remoteDirectory($currentProjectRoot, true)
@@ -86,7 +86,7 @@ class Symfony extends AbstractApp
      */
     public function isSiteInstalled($worker, AbstractAuth $auth, $remote)
     {
-        $currentProjectRoot = $this->getCurrentProjectRoot($worker, $auth, $remote);
+        $currentProjectRoot = $remote['rootdir'];
         $migrateStatus = '';
         $status = $this->taskSsh($worker, $auth)
             ->remoteDirectory($currentProjectRoot, true)
