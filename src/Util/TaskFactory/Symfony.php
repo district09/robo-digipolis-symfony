@@ -2,9 +2,13 @@
 
 namespace DigipolisGent\Robo\Symfony\Util\TaskFactory;
 
+use Consolidation\Config\ConfigInterface;
 use DigipolisGent\Robo\Helpers\DependencyInjection\RemoteHelperAwareInterface;
+use DigipolisGent\Robo\Helpers\Util\RemoteHelper;
 use DigipolisGent\Robo\Helpers\Util\TaskFactory\AbstractApp;
 use DigipolisGent\Robo\Task\Deploy\Ssh\Auth\AbstractAuth;
+use League\Container\DefinitionContainerInterface;
+use Robo\Collection\CollectionBuilder;
 
 class Symfony extends AbstractApp implements RemoteHelperAwareInterface
 {
@@ -15,6 +19,23 @@ class Symfony extends AbstractApp implements RemoteHelperAwareInterface
     protected $siteInstalled = null;
 
     protected $console = 'bin/console';
+
+    public function __construct(ConfigInterface $config, RemoteHelper $remoteHelper)
+    {
+        parent::__construct($config);
+        $this->setRemoteHelper($remoteHelper);
+    }
+
+    public static function create(DefinitionContainerInterface $container)
+    {
+        $object = new static(
+            $container->get('config'),
+            $container->get(RemoteHelper::class)
+        );
+        $object->setBuilder(CollectionBuilder::create($container, $object));
+
+        return $object;
+    }
 
     /**
      * Install the site in the current folder.
