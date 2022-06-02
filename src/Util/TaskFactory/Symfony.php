@@ -87,7 +87,7 @@ class Symfony extends AbstractApp implements RemoteHelperAwareInterface
     public function updateTask($worker, AbstractAuth $auth, $remote, $extra = [])
     {
         $currentProjectRoot = $remote['rootdir'];
-        return $this->taskSsh($server, $auth)
+        return $this->taskSsh($worker, $auth)
             ->remoteDirectory($currentProjectRoot, true)
             // Updates can take a long time. Let's set it to 30 minutes.
             ->timeout(1800)
