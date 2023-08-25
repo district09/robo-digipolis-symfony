@@ -174,7 +174,7 @@ class DigipolisSymfonyCommands extends DigipolisHelpersCommands implements
 
         $url = $this->env('DATABASE_URL', 'mysql://symfony:symfony@localhost:3306/symfony');
         $matches = [];
-        preg_match('/^([^:\/\/]*):\/\/([^:]*):([^@]*)@([^:]*):([^\/]*)\/(.*)$/', $url, $matches);
+        preg_match('/^([^:\/\/]*):\/\/([^:]*):([^@]*)@([^:]*):([^\/]*)\/([^\?]*)(\?serverVersion=.*)?$/', $url, $matches);
         return [
           'default' => [
                 'type' => $matches[1],
