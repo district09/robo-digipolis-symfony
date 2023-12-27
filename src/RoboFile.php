@@ -4,9 +4,9 @@
  * Example robo file.
  */
 
-use DigipolisGent\Robo\Symfony\RoboFileBase;
+use \Robo\Tasks;
 
-class RoboFile extends RoboFileBase
+class RoboFile extends Tasks
 {
 
 }

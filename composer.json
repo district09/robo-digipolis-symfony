@@ -1,12 +1,12 @@
 {
     "name": "digipolisgent/robo-digipolis-symfony",
-    "description": "Basic deploy flow for a Symfony 4 site.",
+    "description": "Basic deploy flow for a Symfony 6 site.",
     "type": "robo-tasks",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "digipolisgent/robo-digipolis-helpers": "^3.0",
-        "symfony/dotenv": "^4.4|^5|^6"
+        "digipolisgent/robo-digipolis-helpers": "^4.0",
+        "symfony/dotenv": "^6"
     },
     "autoload": {
         "psr-4": {
