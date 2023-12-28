@@ -1,28 +1,31 @@
 <?php
 
-namespace DigipolisGent\Robo\Symfony\Util\TaskFactory;
+namespace DigipolisGent\Robo\Symfony\EventHandler;
 
 use DigipolisGent\CommandBuilder\CommandBuilder;
-use DigipolisGent\Robo\Helpers\Util\TaskFactory\Build as BuildBase;
+use DigipolisGent\Robo\Helpers\EventHandler\AbstractTaskEventHandler;
+use DigipolisGent\Robo\Helpers\Util\TimeHelper;
+use Symfony\Component\EventDispatcher\GenericEvent;
 
-class Build extends BuildBase
+class BuildTaskHandler extends AbstractTaskEventHandler
 {
     use \DigipolisGent\Robo\Task\Package\Tasks;
     use \DigipolisGent\Robo\Task\Package\Utility\NpmFindExecutable;
     use \Robo\Task\Base\Tasks;
 
+    public function getPriority(): int {
+      return parent::getPriority() - 100;
+    }
+
     /**
-     * Build a site and package it.
-     *
-     * @param string $archivename
-     *   Name of the archive to create.
-     *
-     * @return \Robo\Contract\TaskInterface
-     *   The deploy task.
+     * {@inheritDoc}
      */
-    public function buildTask($archivename = null)
+    public function handle(GenericEvent $event)
     {
-        $archive = is_null($archivename) ? $this->remoteHelper->getTime() . '.tar.gz' : $archivename;
+        $event->stopPropagation();
+        $archiveName = $event->hasArgument('archiveName') ? $event->getArgument('archiveName') : null;
+        $archive = is_null($archiveName) ? TimeHelper::getInstance()->getTime() . '.tar.gz' : $archiveName;
+
         $collection = $this->collectionBuilder();
         if (file_exists('package.json')) {
             $collection
