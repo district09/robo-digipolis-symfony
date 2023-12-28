@@ -7,6 +7,7 @@ use DigipolisGent\Robo\Symfony\EventHandler\BuildTaskHandler;
 use DigipolisGent\Robo\Symfony\EventHandler\ClearCacheHandler;
 use DigipolisGent\Robo\Symfony\EventHandler\InstallHandler;
 use DigipolisGent\Robo\Symfony\EventHandler\InstallSymfonyHandler;
+use DigipolisGent\Robo\Symfony\EventHandler\IsSiteInstalledHandler;
 use DigipolisGent\Robo\Symfony\EventHandler\PreRestoreBackupRemoteHandler;
 use DigipolisGent\Robo\Symfony\EventHandler\SymfonyConsolePathHandler;
 use DigipolisGent\Robo\Symfony\EventHandler\UpdateHandler;
@@ -155,5 +156,13 @@ class DigipolisSymfonyDefaultHooksCommands extends Tasks implements ConfigAwareI
     public function getSymfonyConsolePathHandler()
     {
         return new SymfonyConsolePathHandler();
+    }
+
+    /**
+     * @hook on-event digipolis:is-site-installed
+     */
+    public function getIsSiteInstalledHandler()
+    {
+        return new IsSiteInstalledHandler();
     }
 }
