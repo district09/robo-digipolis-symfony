@@ -23,7 +23,8 @@ class DigipolisSymfonyUpdateCommand extends Tasks implements CustomEventAwareInt
     public function digipolisUpdateSymfony() {
         $this->readProperties();
         return $this->handleTaskEvent(
-            'digipolis:update-symfony'
+            'digipolis:update-symfony',
+            []
         );
     }
 }

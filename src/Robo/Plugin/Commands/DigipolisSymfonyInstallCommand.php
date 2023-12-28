@@ -23,7 +23,8 @@ class DigipolisSymfonyInstallCommand extends Tasks implements CustomEventAwareIn
     public function digipolisInstallSymfony() {
         $this->readProperties();
         return $this->handleTaskEvent(
-            'digipolis:install-symfony'
+            'digipolis:install-symfony',
+            []
         );
     }
 }
