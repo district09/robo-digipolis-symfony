@@ -19,12 +19,12 @@ use Symfony\Component\Finder\Finder;
 class DigipolisSymfonyDefaultHooksCommands extends Tasks implements ConfigAwareInterface, CustomEventAwareInterface
 {
 
-    use Consolidation\Config\ConfigAwareTrait;
-    use DigipolisGent\Robo\Task\General\Common\DigipolisPropertiesAware;
-    use DigipolisGent\Robo\Task\General\Tasks;
-    use DigipolisGent\Robo\Helpers\Traits\EventDispatcher;
-    use Consolidation\AnnotatedCommand\Events\CustomEventAwareTrait;
-    use DigipolisGent\Robo\Helpers\Traits\DigipolisHelpersCommandUtilities;
+    use \Consolidation\Config\ConfigAwareTrait;
+    use \DigipolisGent\Robo\Task\General\Common\DigipolisPropertiesAware;
+    use \DigipolisGent\Robo\Task\General\Tasks;
+    use \DigipolisGent\Robo\Helpers\Traits\EventDispatcher;
+    use \Consolidation\AnnotatedCommand\Events\CustomEventAwareTrait;
+    use \DigipolisGent\Robo\Helpers\Traits\DigipolisHelpersCommandUtilities;
 
     /**
      * @hook on-event digipolis-db-config

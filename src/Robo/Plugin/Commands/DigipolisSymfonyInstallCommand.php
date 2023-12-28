@@ -12,7 +12,6 @@ class DigipolisSymfonyInstallCommand extends Tasks implements CustomEventAwareIn
     use \DigipolisGent\Robo\Helpers\Traits\EventDispatcher;
     use \Consolidation\AnnotatedCommand\Events\CustomEventAwareTrait;
     use \Consolidation\Config\ConfigAwareTrait;
-    use \DigipolisGent\Robo\Symfony\Traits\AliasesHelper;
     use \DigipolisGent\Robo\Task\General\Common\DigipolisPropertiesAware;
     use \DigipolisGent\Robo\Task\General\Tasks;
 
