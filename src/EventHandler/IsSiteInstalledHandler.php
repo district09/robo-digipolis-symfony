@@ -21,6 +21,7 @@ class IsSiteInstalledHandler extends SymfonyHandler
      */
     public function handle(GenericEvent $event)
     {
+        $event->stopPropagation();
         /** @var RemoteConfig $remoteConfig */
         $remoteConfig = $event->getArgument('remoteConfig');
 
