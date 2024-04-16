@@ -23,7 +23,8 @@ class UpdateHandler extends AbstractTaskEventHandler
     {
         /** @var RemoteConfig $remoteConfig */
         $remoteConfig = $event->getArgument('remoteConfig');
-        $currentProjectRoot = $remoteConfig->getCurrentProjectRoot();
+        $remoteSettings = $remoteConfig->getRemoteSettings();
+        $currentProjectRoot = $remoteSettings['currentdir'] . '/..';
         $auth = new KeyFile($remoteConfig->getUser(), $remoteConfig->getPrivateKeyFile());
         return $this->taskSsh($remoteConfig->getHost(), $auth)
             ->remoteDirectory($currentProjectRoot, true)
