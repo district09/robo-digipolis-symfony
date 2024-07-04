@@ -2,12 +2,11 @@
 
 namespace DigipolisGent\Robo\Symfony\EventHandler;
 
-use DigipolisGent\Robo\Helpers\EventHandler\AbstractTaskEventHandler;
 use DigipolisGent\Robo\Helpers\Util\RemoteConfig;
 use DigipolisGent\Robo\Task\Deploy\Ssh\Auth\KeyFile;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
-class UpdateHandler extends AbstractTaskEventHandler
+class UpdateHandler extends SymfonyHandler
 {
     use \DigipolisGent\Robo\Task\Deploy\Tasks;
 
