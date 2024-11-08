@@ -38,7 +38,7 @@ class DigipolisSymfonyDefaultHooksCommands extends Tasks implements ConfigAwareI
         }
 
         $finder = new Finder();
-        $finder->in($rootDir)->ignoreDotFiles(false)->files()->name('.env');
+        $finder->in($rootDir)->exclude('vendor')->ignoreDotFiles(false)->files()->name('.env');
         foreach ($finder as $settingsFile) {
             $env = new Dotenv();
             $env->loadEnv(dirname($settingsFile->getRealPath()) . DIRECTORY_SEPARATOR . $settingsFile->getFilename());
