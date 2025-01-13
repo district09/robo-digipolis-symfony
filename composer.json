@@ -6,7 +6,7 @@
     "prefer-stable": true,
     "require": {
         "digipolisgent/robo-digipolis-helpers": "^4.0",
-        "symfony/dotenv": "^6"
+        "symfony/dotenv": "^6 || ^7"
     },
     "autoload": {
         "psr-4": {
