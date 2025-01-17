@@ -10,6 +10,8 @@ remote:
   symlinks:
     - '${remote.webdir}:${remote.currentdir}'
     - '${remote.configdir}/.env.local:${remote.releasesdir}/[time]/.env.local'
+    - '${remote.filesdir}/private/cache:${remote.releasesdir}/[time]/var/cache'
+    - '${remote.filesdir}/private/sessions:${remote.releasesdir}/[time]/var/sessions'
   opcache:
     env: 'fcgi'
     host: '/usr/local/multi-php/[user]/run/[user].sock'
