@@ -23,7 +23,7 @@ class ClearCacheHandler extends SymfonyHandler
         $auth = new KeyFile($remoteConfig->getUser(), $remoteConfig->getPrivateKeyFile());
         return $this->taskSsh($remoteConfig->getHost(), $auth)
             ->remoteDirectory($currentWebRoot . '/..', true)
-            ->timeout(120)
+            ->timeout(300)
             ->exec($console . ' cache:clear')
             ->exec($console . ' cache:warmup');
     }

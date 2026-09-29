@@ -40,7 +40,7 @@ class PreRestoreBackupRemoteHandler extends PreRestoreBackupRemoteHandlerBase im
             $collection
                 ->taskSsh($remoteConfig->getHost(), $auth)
                     ->remoteDirectory($remoteConfig->getCurrentProjectRoot(), true)
-                    ->timeout(60)
+                    ->timeout(1800)
                     ->exec($this->getConsolePath() . ' doctrine:schema:drop --full-database --force');
         }
         return $collection;
